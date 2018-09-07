@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenGL", "OpenGL\OpenGL.vcxproj", "{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BaseOpenGL", "BaseOpenGL\BaseOpenGL.vcxproj", "{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1.IntroductionToOpenGL", "1.IntroductionToOpenGL\1.IntroductionToOpenGL.vcxproj", "{DFA8C85C-928F-4AB8-AFAB-ACA680E92F2C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2.CamerasAndProjection", "2.CamerasAndProjection\2.CamerasAndProjection.vcxproj", "{02E4E5C3-CC52-49F2-88FE-ED614FDF4163}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3.RenderingGeometry", "3.RenderingGeometry\3.RenderingGeometry.vcxproj", "{75116C57-99A2-4F62-B00C-816F79A4F82C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,17 +21,40 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Debug|x64.ActiveCfg = Debug|x64
 		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Debug|x64.Build.0 = Debug|x64
-		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Debug|x86.ActiveCfg = Debug|Win32
-		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Debug|x86.Build.0 = Debug|Win32
-		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Release|x64.ActiveCfg = Release|x64
-		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Release|x64.Build.0 = Release|x64
-		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Release|x86.ActiveCfg = Release|Win32
-		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Release|x86.Build.0 = Release|Win32
+		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Debug|x86.ActiveCfg = Debug|x64
+		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Release|x64.ActiveCfg = Debug|x64
+		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Release|x64.Build.0 = Debug|x64
+		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Release|x86.ActiveCfg = Debug|x64
+		{15C9CD51-A906-4B68-91EA-ABD8933AAF9D}.Release|x86.Build.0 = Debug|x64
+		{DFA8C85C-928F-4AB8-AFAB-ACA680E92F2C}.Debug|x64.ActiveCfg = Debug|x64
+		{DFA8C85C-928F-4AB8-AFAB-ACA680E92F2C}.Debug|x64.Build.0 = Debug|x64
+		{DFA8C85C-928F-4AB8-AFAB-ACA680E92F2C}.Debug|x86.ActiveCfg = Debug|Win32
+		{DFA8C85C-928F-4AB8-AFAB-ACA680E92F2C}.Debug|x86.Build.0 = Debug|Win32
+		{DFA8C85C-928F-4AB8-AFAB-ACA680E92F2C}.Release|x64.ActiveCfg = Release|x64
+		{DFA8C85C-928F-4AB8-AFAB-ACA680E92F2C}.Release|x64.Build.0 = Release|x64
+		{DFA8C85C-928F-4AB8-AFAB-ACA680E92F2C}.Release|x86.ActiveCfg = Release|Win32
+		{DFA8C85C-928F-4AB8-AFAB-ACA680E92F2C}.Release|x86.Build.0 = Release|Win32
+		{02E4E5C3-CC52-49F2-88FE-ED614FDF4163}.Debug|x64.ActiveCfg = Debug|x64
+		{02E4E5C3-CC52-49F2-88FE-ED614FDF4163}.Debug|x64.Build.0 = Debug|x64
+		{02E4E5C3-CC52-49F2-88FE-ED614FDF4163}.Debug|x86.ActiveCfg = Debug|Win32
+		{02E4E5C3-CC52-49F2-88FE-ED614FDF4163}.Debug|x86.Build.0 = Debug|Win32
+		{02E4E5C3-CC52-49F2-88FE-ED614FDF4163}.Release|x64.ActiveCfg = Release|x64
+		{02E4E5C3-CC52-49F2-88FE-ED614FDF4163}.Release|x64.Build.0 = Release|x64
+		{02E4E5C3-CC52-49F2-88FE-ED614FDF4163}.Release|x86.ActiveCfg = Release|Win32
+		{02E4E5C3-CC52-49F2-88FE-ED614FDF4163}.Release|x86.Build.0 = Release|Win32
+		{75116C57-99A2-4F62-B00C-816F79A4F82C}.Debug|x64.ActiveCfg = Debug|x64
+		{75116C57-99A2-4F62-B00C-816F79A4F82C}.Debug|x64.Build.0 = Debug|x64
+		{75116C57-99A2-4F62-B00C-816F79A4F82C}.Debug|x86.ActiveCfg = Debug|Win32
+		{75116C57-99A2-4F62-B00C-816F79A4F82C}.Debug|x86.Build.0 = Debug|Win32
+		{75116C57-99A2-4F62-B00C-816F79A4F82C}.Release|x64.ActiveCfg = Release|x64
+		{75116C57-99A2-4F62-B00C-816F79A4F82C}.Release|x64.Build.0 = Release|x64
+		{75116C57-99A2-4F62-B00C-816F79A4F82C}.Release|x86.ActiveCfg = Release|Win32
+		{75116C57-99A2-4F62-B00C-816F79A4F82C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {11292193-FB20-4252-9264-4F40FA5EF1B1}
+		SolutionGuid = {ADCEC801-6AD2-4B07-B175-25869BA147AE}
 	EndGlobalSection
 EndGlobal
