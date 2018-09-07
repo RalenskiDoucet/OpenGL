@@ -2,5 +2,6 @@
 
 class Shader
 {
- 
+	void createBuffer();
+	void startup();
 };
