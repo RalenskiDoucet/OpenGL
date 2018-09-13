@@ -1,5 +1,8 @@
 #include "GLM\glm.hpp"
 #include "gl_core_4_4.h"
+#include <Shader.h>
+
+
 class MeshRenderer
 {
 public:
@@ -11,6 +14,9 @@ public:
 		glm::vec4 normal;
 		glm::vec2 texcoord;
 	};
+	AIE::ShaderProgram shader;
+	void LinkShader();
+	//load vertex shader from file.
 	void initialise();
 	virtual void draw();
 protected:

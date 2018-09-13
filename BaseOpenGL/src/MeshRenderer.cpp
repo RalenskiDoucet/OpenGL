@@ -7,8 +7,28 @@ MeshRenderer::~MeshRenderer()
 	glDeleteBuffers(1, &ibo);
 }
 
+void MeshRenderer::LinkShader()
+{
+	shader.loadShader(AIE::eShaderStage::VERTEX,
+		"./shaders/simple.vert");
+	shader.loadShader(AIE::eShaderStage::FRAGMENT,
+		"./shaders/simple.frag");
+	if (shader.link() == false)
+	{
+		printf("Shader ERROR: %s\n", shader.getLastError());
+		Vertex Shader(simple.vert)
+	}
+
+
+}
+
+
 void MeshRenderer::initialise()
 {
+	unsigned int vertexCount
+		unsigned int vertexCount; const Vertex* vertices;
+		unsigned int indexCount = 0;
+		unsigned int* indices = nullptr;
 	assert(vao == 0);
 	glGenBuffers(1, &vbo);
 	glGenVertexArrays(1, &vao);
@@ -39,4 +59,5 @@ void MeshRenderer::draw()
 			tricount, GL_UNSIGNED_INT, 0);
 	else
 		glDrawArrays(GL_TRIANGLES, 0, 3 * tricount);
+
 }
