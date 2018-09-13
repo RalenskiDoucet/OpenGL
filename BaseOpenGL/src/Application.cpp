@@ -17,7 +17,7 @@ void Application::run(const char * title, unsigned int width, unsigned int heigh
 {
 	float prevTime = glfwGetTime();
 	glfwInit();
-	m_window = glfwCreateWindow(720, 720, "title", NULL, NULL);
+	m_window = glfwCreateWindow(720, 720, "ChalkZone", NULL, NULL);
 	glfwMakeContextCurrent(m_window);
 	ogl_LoadFunctions();
 	auto minor = ogl_GetMinorVersion();

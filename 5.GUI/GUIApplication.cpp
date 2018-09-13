@@ -18,11 +18,11 @@ void GUIApplication::shutdown()
 }
 
 void GUIApplication::update(float dt)
-{
+{//use the model matrix to  move the square around
 	
 }
 
 void GUIApplication::draw()
 {
-	if(ImGui::Button("but")){}
+	if(ImGui::Button("Destroy the world")){}
 }
