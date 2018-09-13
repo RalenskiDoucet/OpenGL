@@ -16,7 +16,7 @@ void MeshRenderer::LinkShader()
 	if (shader.link() == false)
 	{
 		printf("Shader ERROR: %s\n", shader.getLastError());
-		Vertex Shader(simple.vert)
+	/*	Vertex Shader(simple.vert)*/
 	}
 
 
@@ -25,11 +25,11 @@ void MeshRenderer::LinkShader()
 
 void MeshRenderer::initialise()
 {
-	unsigned int vertexCount
-		unsigned int vertexCount; const Vertex* vertices;
+	unsigned int vertexCount;
+		/*unsigned int vertexCount; const Vertex* vertices;*//*
 		unsigned int indexCount = 0;
-		unsigned int* indices = nullptr;
-	assert(vao == 0);
+		unsigned int* indices = nullptr;*/
+//	assert(vao == 0);
 	glGenBuffers(1, &vbo);
 	glGenVertexArrays(1, &vao);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
