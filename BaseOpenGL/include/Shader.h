@@ -36,6 +36,7 @@ namespace AIE
 
 		bool loadShader(unsigned int stage, const char* filename);
 		bool createShader(unsigned int stage, const char* string);
+	
 
 		unsigned int getStage() const { return m_stage; }
 		unsigned int getHandle() const { return m_handle; }

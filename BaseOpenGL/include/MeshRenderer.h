@@ -14,8 +14,7 @@ public:
 		glm::vec4 normal;
 		glm::vec2 texcoord;
 	};
-	AIE::ShaderProgram shader;
-	void LinkShader();
+
 	//load vertex shader from file.
 	void initialise();
 	virtual void draw();

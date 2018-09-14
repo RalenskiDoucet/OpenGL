@@ -1,28 +1,11 @@
 #include "MeshRenderer.h"
-#include <assert.h>
+
 MeshRenderer::~MeshRenderer()
 {
 	glDeleteVertexArrays(1, &vao);
 	glDeleteBuffers(1, &vbo);
 	glDeleteBuffers(1, &ibo);
 }
-
-void MeshRenderer::LinkShader()
-{
-	shader.loadShader(AIE::eShaderStage::VERTEX,
-		"./shaders/simple.vert");
-	shader.loadShader(AIE::eShaderStage::FRAGMENT,
-		"./shaders/simple.frag");
-	if (shader.link() == false)
-	{
-		printf("Shader ERROR: %s\n", shader.getLastError());
-	/*	Vertex Shader(simple.vert)*/
-	}
-
-
-}
-
-
 void MeshRenderer::initialise()
 {
 	unsigned int vertexCount;

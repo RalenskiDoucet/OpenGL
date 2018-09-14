@@ -29,6 +29,7 @@ void Application::run(const char * title, unsigned int width, unsigned int heigh
 	glClearColor(0.15f, 0.15f, 0.15f, 1);
 	glEnable(GL_DEPTH_TEST);
 	ImGui_ImplGlfwGL3_Init(m_window,true);
+	
 	startup();
 	while (glfwWindowShouldClose(m_window) == false && glfwGetKey(m_window, GLFW_KEY_ESCAPE) != GLFW_PRESS)
 	{

@@ -1,7 +1,11 @@
 #pragma once
-#include "Vector"
-class RenderingGeometryApp
+#include <Application.h>
+
+class RenderingGeometryApp:public Application
 {
 public:
-	std::vector<unsigned int>m_indices;
+	void startup() override;
+	void shutdown() override;
+	void update(float dt) override;
+	void draw() override;
 };

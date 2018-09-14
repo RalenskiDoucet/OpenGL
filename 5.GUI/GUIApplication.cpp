@@ -1,4 +1,5 @@
 #include "GUIApplication.h"
+
 #include "imgui.h"
 
 GUIApplication::GUIApplication()
@@ -11,6 +12,7 @@ GUIApplication::~GUIApplication()
 
 void GUIApplication::startup()
 {
+	 
 }
 
 void GUIApplication::shutdown()
@@ -24,5 +26,11 @@ void GUIApplication::update(float dt)
 
 void GUIApplication::draw()
 {
-	if(ImGui::Button("Destroy the world")){}
+	if(ImGui::Button("Move Left")){}
+	if (ImGui::Button("Move Right")) {}
+	if (ImGui::Button("Move Up")) {}
+	if (ImGui::Button("Move Down")) {}
+	if (ImGui::Button("Move Left")) {}
+	
+
 }
