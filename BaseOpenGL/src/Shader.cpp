@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cassert>
 #include "gl_core_4_4.h"
+#include <fstream>
 
 namespace AIE
 {
@@ -10,48 +11,16 @@ namespace AIE
 		glDeleteShader(m_handle);
 	}
 
-	bool Shader::loadShader(unsigned int stage, const char* filename) {
-		assert(stage > 0 && stage < eShaderStage::SHADER_STAGE_Count);
-
-		m_stage = stage;
-
-		switch (stage) {
-		case eShaderStage::VERTEX:	m_handle = glCreateShader(GL_VERTEX_SHADER);	break;
-		case eShaderStage::TESSELLATION_EVALUATION:	m_handle = glCreateShader(GL_TESS_EVALUATION_SHADER);	break;
-		case eShaderStage::TESSELLATION_CONTROL:	m_handle = glCreateShader(GL_TESS_CONTROL_SHADER);	break;
-		case eShaderStage::GEOMETRY:	m_handle = glCreateShader(GL_GEOMETRY_SHADER);	break;
-		case eShaderStage::FRAGMENT:	m_handle = glCreateShader(GL_FRAGMENT_SHADER);	break;
-		default:	break;
-		};
-
+	bool Shader::loadShader(unsigned int stage, const char* FileInfo) {
+	
 		// open file
-		FILE* file = nullptr;
-		fopen_s(&file, filename, "rb");
-		fseek(file, 0, SEEK_END);
-		unsigned int size = ftell(file);
-		char* source = new char[size + 1];
-		fseek(file, 0, SEEK_SET);
-		fread_s(source, size + 1, sizeof(char), size, file);
-		fclose(file);
-		source[size] = 0;
-
-		glShaderSource(m_handle, 1, (const char**)&source, 0);
-		glCompileShader(m_handle);
-
-		delete[] source;
-
-		int success = GL_TRUE;
-		glGetShaderiv(m_handle, GL_LINK_STATUS, &success);
-		if (success == GL_FALSE) {
-			int infoLogLength = 0;
-			glGetShaderiv(m_handle, GL_INFO_LOG_LENGTH, &infoLogLength);
-
-			delete[] m_lastError;
-			m_lastError = new char[infoLogLength];
-			glGetShaderInfoLog(m_handle, infoLogLength, 0, m_lastError);
-			return false;
-		}
-
+		FILE* ShaderFile = nullptr;
+		fopen_s(&ShaderFile, FileInfo, "VertexShader.txt");
+		fopen_s(&ShaderFile, FileInfo, "FragmentShader.txt");
+		fclose(ShaderFile);
+		fscanf_s(ShaderFile, "VertexShader.txt");
+		fscanf_s(ShaderFile, "FragmentShader.txt");
+		fclose(ShaderFile);
 		return true;
 	}
 
