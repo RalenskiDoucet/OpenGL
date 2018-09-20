@@ -6,6 +6,7 @@ class MeshRenderer
 public:
 	MeshRenderer();
 	virtual ~MeshRenderer();
+	void initialise(std::vector<glm::vec3> positions);
 	struct Vertex
 	{
 		glm::vec4 position;

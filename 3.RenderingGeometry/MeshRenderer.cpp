@@ -10,6 +10,11 @@ MeshRenderer::~MeshRenderer()
 	glDeleteBuffers(1, &vbo);
 	glDeleteBuffers(1, &ibo);
 }
+void MeshRenderer::initialise(std::vector<glm::vec3> positions)
+{
+}
+
+
 void MeshRenderer::initialise()
 {
 
