@@ -1,5 +1,5 @@
 #pragma once
-#include <glm/glm/glm.hpp>
+#include <GLM/glm.hpp>
 
 class Vertex
 {
