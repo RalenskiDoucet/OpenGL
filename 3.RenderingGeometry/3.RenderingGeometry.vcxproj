@@ -70,8 +70,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)dep\include</IncludePath>
-    <LibraryPath>$(SolutionDir)dep\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>
+    </IncludePath>
+    <LibraryPath>$(LibraryPath);</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -79,9 +80,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\include; $(SolutionDir)BaseOpenGL\include;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>BaseOpenGL.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dep\lib;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -124,14 +127,12 @@
     <ClInclude Include="MeshRenderer.h" />
     <ClInclude Include="RenderingGeometryApp.h" />
     <ClInclude Include="Shader.h" />
-    <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MeshRenderer.cpp" />
     <ClCompile Include="RenderingGeometryApp.cpp" />
     <ClCompile Include="Shader.cpp" />
-    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

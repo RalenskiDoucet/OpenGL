@@ -1,12 +1,22 @@
 #pragma once
+#include <iostream>
+#include <GLM/glm.hpp>
+
 class Shader
 {
 public:
 	Shader();
 	~Shader();
+	enum SHADER_TYPE {
+		VERTEX = 0,
+		FRAGMENT = 1
+	};
+	std::string fsSourceString;
+	std::string vsSourceString;
+	std::string data;
 	void bind();
 	void unbind();
-	bool load(const char* filename, unsigned int type, bool isFile = true);
+	bool load(const char* filename, Shader::SHADER_TYPE);
 	bool attach();
 	void Load();
 
