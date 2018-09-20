@@ -11,6 +11,7 @@ public:
 	void shutdown() override;
 	void update(float dt) override;
 	void draw() override;
+	void genHalfCircle(int np, int radius);
 private:
 	Shader * mShader;
 	MeshRenderer* mMesh;

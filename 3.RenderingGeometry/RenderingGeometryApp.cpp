@@ -37,4 +37,18 @@ void RenderingGeometryApp::draw()
 	
 	mMesh->draw();
 	mShader->unbind();
+	genHalfCircle();
+	
+
+}
+
+void RenderingGeometryApp::genHalfCircle(int np,int radius)
+{
+	np = 5;
+	int Points[] = { (1,0),(7.7),(0,1),(-7,7),(-1,0) };
+	radius = 3.14 / np;
+	for (int theta = 0; theta < 3.14; theta = 3.14/np)
+	{
+
+	}
 }
