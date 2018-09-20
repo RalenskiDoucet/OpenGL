@@ -1,4 +1,8 @@
 #include "MeshRenderer.h"
+#include "gl_core_4_4.h"
+#include "Shader.h"
+
+MeshRenderer::MeshRenderer() : vao(0), vbo(0), ibo(0) {}
 
 MeshRenderer::~MeshRenderer()
 {
@@ -8,44 +12,44 @@ MeshRenderer::~MeshRenderer()
 }
 void MeshRenderer::initialise()
 {
-	unsigned int vertexCount;
-		/*unsigned int vertexCount; const Vertex* vertices;*//*
-		unsigned int indexCount = 0;
-		unsigned int* indices = nullptr;*/
-//	assert(vao == 0);
-	glGenBuffers(1, &vbo);
+
+	_vertices =
+	{
+		{ glm::vec4(-10, 10, 0, 1), glm::vec4(1, 0, 0, 1) },
+		{ glm::vec4(10, 10, 0, 1), glm::vec4(0, 1, 0, 1) },
+		{ glm::vec4(10, -10, 0, 1), glm::vec4(0, 0, 1, 1) },
+		{ glm::vec4(-10, -10, 0, 1), glm::vec4(1, 1, 1, 1) },
+	};
+
+	_indices = std::vector<unsigned int>{ 0,1,2,2,3,0 };
+
 	glGenVertexArrays(1, &vao);
+	glGenBuffers(1, &vbo);
+	glGenBuffers(1, &ibo);
+
+	glBindVertexArray(vao);
+
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	vertex vertices[6];
-	vertices[0].position={ -0.5f,0,0.5f,1 };
-	vertices[1].position={ 0.5f,0,0.5f,1 };
-	vertices[2].position={ -0.5f,0,-0.5f,1 };
-	vertices[3].position={ -0.5f,0,-0.5f,1 };
-	vertices[4].position={ 0.5f,0,0.5f,1 };
-	vertices[5].position={ -0.5f,0,0-.5f,1 };
-	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(vertex), vertices,
-		GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+
+	glBufferData(GL_ARRAY_BUFFER, 6 * sizeof(Vertex), _vertices.data(), GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), _indices.data(), GL_STATIC_DRAW);
+
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 
-		sizeof(vertex), 0);
+	glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)sizeof(glm::vec4));
+
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	tricount = 2;
-	Shader shader;
-	shader.load("vertex.ver", Shader::SHADER_TYPE::VERTEX);
-	shader.load("fragment.fra", Shader::SHADER_TYPE::FRAGMENT);
-	shader.attach();
-
-
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 void MeshRenderer::draw()
 {
 	glBindVertexArray(vao);
-	if (ibo != 0)
-		glDrawElements(GL_TRIANGLES, 3 *
-			tricount, GL_UNSIGNED_INT, 0);
-	else
-		glDrawArrays(GL_TRIANGLES, 0, 3 * tricount);
-
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glDrawElements(GL_TRIANGLE_STRIP, 6, GL_UNSIGNED_INT, 0);
+	glBindVertexArray(0);
 }

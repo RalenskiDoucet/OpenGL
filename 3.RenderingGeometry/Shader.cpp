@@ -30,11 +30,11 @@ bool Shader::load(const char *Filename, Shader::SHADER_TYPE shadertype)
 	char mstring[500];
 	while(std::fgets(mstring, sizeof mstring, file))
 	{
-		if (shadertype == 0)
+		if (shadertype == Shader::SHADER_TYPE::VERTEX)
 		{
 			vsSourceString.append(mstring);
 		}
-		if (shadertype == 1)
+		else if (shadertype == Shader::SHADER_TYPE::FRAGMENT)
 		{
 			fsSourceString.append(mstring);
 		}
@@ -42,7 +42,7 @@ bool Shader::load(const char *Filename, Shader::SHADER_TYPE shadertype)
 	}
 	vsSource = vsSourceString.c_str();
 	fsSource = fsSourceString.c_str();
-
+	return true;
 }
 
 bool Shader::attach()

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+
 #include <GLM/glm.hpp>
 
 class Shader
