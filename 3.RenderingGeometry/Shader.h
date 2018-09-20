@@ -8,7 +8,7 @@ public:
 	void unbind();
 	bool load(const char* filename, unsigned int type, bool isFile = true);
 	bool attach();
-	void defaultLoad();
+	void Load();
 
 	unsigned int getUniform(const char* mvp);
 	unsigned int m_vertexShader;
@@ -25,5 +25,5 @@ struct ShaderData
 	Shader* shader;
 	char* source;
 	unsigned type;
-	bool isFile;
+	bool CorrectFile;
 };

@@ -41,7 +41,7 @@ bool Shader::attach()
 	return true;
 }
 
-void Shader::defaultLoad()
+void Shader::Load()
 {
 	vsSource = "#version 410\n \
                 layout(location = 0) in vec4 Position; \

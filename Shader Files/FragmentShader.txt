@@ -1,4 +1,0 @@
-	const char *fsSource = "#version 410\n \
-                            in vec4 vColor; \
-                            out vec4 FragColor; \
-                            void main() { FragColor = vec4(.25, .25, .25, 0); }";
