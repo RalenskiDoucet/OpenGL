@@ -1,4 +1,9 @@
 #pragma once
+#include "Shader.h"
+#include "MeshRenderer.h"
+#include <Vertex.h>
+#include "GLM/ext.hpp"
+#include "gl_core_4_4.h"
 #include <Application.h>
 #include <GLM/glm.hpp>
 class Shader;//forward declare this to use in the RenderingGeometryApp.cpp
@@ -11,7 +16,8 @@ public:
 	void shutdown() override;
 	void update(float dt) override;
 	void draw() override;
-	void genHalfCircle(int np, int radius);
+	std::vector <glm::vec4> genHalfCircle(int np, double radius);
+	void genSphere(int np, int mer);
 private:
 	Shader * mShader;
 	MeshRenderer* mMesh;

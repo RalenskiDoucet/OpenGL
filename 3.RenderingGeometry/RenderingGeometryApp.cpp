@@ -1,8 +1,6 @@
+#define GLM_FORCE_SWIZZLE
 #include "RenderingGeometryApp.h"
-#include "Shader.h"
-#include "MeshRenderer.h"
-#include "GLM/ext.hpp"
-#include "gl_core_4_4.h"
+
 
 void RenderingGeometryApp::startup()
 {
@@ -37,18 +35,29 @@ void RenderingGeometryApp::draw()
 	
 	mMesh->draw();
 	mShader->unbind();
-	genHalfCircle();
+	genHalfCircle(5,180);
 	
 
 }
 
-void RenderingGeometryApp::genHalfCircle(int np,int radius)
+std::vector<glm::vec4> RenderingGeometryApp::genHalfCircle(int np, double radius)
 {
-	np = 5;
-	int Points[] = { (1,0),(7.7),(0,1),(-7,7),(-1,0) };
-	radius = 3.14 / np;
-	for (int theta = 0; theta < 3.14; theta = 3.14/np)
-	{
+	
+	//np=number of points.
+	//radius=3.14.
 
+	int angle = 3.14 / np;
+	std::vector <glm::vec4>points;
+	int i = 0;
+	for (int theta = 0; theta < 3.14; theta += angle)
+	{
+		points.push_back(glm::vec4(cos(theta), sin(theta), 0, 1));
+		i++;
 	}
+	return points;
+}
+
+void RenderingGeometryApp::genSphere(int np, int mer)
+{
+
 }
