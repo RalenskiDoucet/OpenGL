@@ -42,22 +42,36 @@ void RenderingGeometryApp::draw()
 
 std::vector<glm::vec4> RenderingGeometryApp::genHalfCircle(int np, double radius)
 {
-	
-	//np=number of points.
-	//radius=3.14.
+	//1st two arguments int np(Number of Points); double radius;
+	//2nd declare number of points;
+	//3rd declare local varaible that will represent an vertex's position.
 
-	int angle = 3.14 / np;
-	std::vector <glm::vec4>points;
-	int i = 0;
-	for (int theta = 0; theta < 3.14; theta += angle)
+	std::vector <glm::vec3> circleVertices = {
+	{ glm::vec3(-10,10,0),glm::vec3(1,0,0) },
+	{ glm::vec3(10,10,0),glm::vec3(0,1,0) },
+	{ glm::vec3(10,-10,0),glm::vec3(0,0,1) },
+	{ glm::vec3(-10,-10,0),glm::vec3(1,0,0) },
+	};
+
+	for (int theta = 0; theta < 3.14; radius = 3.14;)
 	{
-		points.push_back(glm::vec4(cos(theta), sin(theta), 0, 1));
-		i++;
+		
+	
+		//calculate (angle or theta) in for loop.
+		//angle is equals the answer of (3.14/number of points)
+		theta= radius / np;
+		//push back each vertice in the vertex _points->
+		//that shows each generated portion of the half circle.
+		circleVertices.push_back(theta);
+		
 	}
-	return points;
+	return ;
 }
 
-void RenderingGeometryApp::genSphere(int np, int mer)
+std::vector<glm::vec4> RenderingGeometryApp::genSphere(int np, int mer)
 {
-
+	std::vector<glm::vec4> allPoints;
+	int i;
+	for(i<
 }
+
