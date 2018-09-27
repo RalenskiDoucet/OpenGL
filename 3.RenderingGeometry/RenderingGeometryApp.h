@@ -17,9 +17,15 @@ public:
 	void shutdown() override;
 	void update(float dt) override;
 	void draw() override;
-	
-	std::vector <glm::vec4> genHalfCircle(int np, double radius);
-	std::vector<glm::vec4> genSphere(int np, int mer);
+	std::vector <glm::vec3> CircleVerts =
+	{ CircleVerts[1] = { 1, 0, 0 },
+		CircleVerts[2] = { .50,.50,0 },
+		CircleVerts[3] = { 1,1,0 },
+		CircleVerts[4] = { -.50,50,0 },
+		CircleVerts[5] = { -1,0,0 },
+	};
+	std::vector <glm::vec3> genHalfCircle(int np, double radius);
+	std::vector<glm::vec3> genSphere(int np, int mer);
 private:
 	Shader *mShader;
 	MeshRenderer* mMesh;
