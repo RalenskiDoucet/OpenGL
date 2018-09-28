@@ -18,12 +18,12 @@ public:
 	void shutdown() override;
 	void update(float dt) override;
 	void draw() override;
-	
+	std::vector<glm::vec4>points;
 	std::vector <glm::vec4> genHalfCircle(int np, double radius);
 	std::vector<glm::vec4> genSphere(std::vector<glm::vec4>points, unsigned int numofM);
-	std::vector<unsigned int>genSphereIndices(unsigned int np, unsigned int numM);
+	std::vector<unsigned int>genSphereIndices(unsigned int np, unsigned int numofM);
 	std::vector<Vertex> genPlane(int size);
-	std::vector<Vertex>genCube(std::vector<Vertex> vertices)
+	std::vector<Vertex>genCube(std::vector<Vertex> vertices);
 private:
 	Shader *mShader;
 	MeshRenderer* mMesh;

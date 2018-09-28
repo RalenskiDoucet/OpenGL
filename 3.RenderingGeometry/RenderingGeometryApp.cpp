@@ -7,12 +7,18 @@ void RenderingGeometryApp::startup()
 	model = glm::mat4(1);
 	view = glm::lookAt(glm::vec3(0, -10, 10), glm::vec3(0), glm::vec3(0, 1, 0));
 	projection = glm::perspective(glm::quarter_pi<float>(), 16 / (float)9, 0.1f, 1000.0f);
-
 	mShader = new Shader();
 	mShader->load("vertex.vert", Shader::SHADER_TYPE::VERTEX);
 	mShader->load("fragment.frag", Shader::SHADER_TYPE::FRAGMENT);
+
 	mShader->attach();
 	mMesh = new MeshRenderer();
+	int nm = 4;
+	int np = 3;
+	double radius = 5;
+	std::vector<glm::vec4>pts=	genHalfCircle(np, radius);
+	std::vector<glm::vec4>allpts = genSphere(pts, nm);
+	std::vector<unsigned int> ind = genSphereIndices(np, nm);
 	mMesh->initialise();
 	
 }
@@ -35,9 +41,6 @@ void RenderingGeometryApp::draw()
 	
 	mMesh->draw();
 	mShader->unbind();
-	genHalfCircle(5,180);
-	
-
 }
 
 std::vector<glm::vec4> RenderingGeometryApp::genHalfCircle(int np, double radius)
@@ -84,15 +87,15 @@ std::vector<glm::vec4> RenderingGeometryApp::genSphere(std::vector<glm::vec4>poi
 
 }
 
-std::vector<unsigned int> RenderingGeometryApp::genSphereIndices(unsigned int np, unsigned int numM)
+std::vector<unsigned int> RenderingGeometryApp::genSphereIndices(unsigned int np, unsigned int numofM)
 {
 	std::vector<unsigned int> Sphereindices;  
 	unsigned int start;   
 	unsigned int bottom_left;  
 	unsigned int bottom_right;   
-	for (int r = 0; r < numM; r++) 
+	for (int r = 0; r < numofM; r++) 
 	{
-		start = y * np; 
+		start = r * np; 
 		for (int p = 0; p < np; p++) 
 		{
 			bottom_left = start + p;
