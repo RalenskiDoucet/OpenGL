@@ -16,9 +16,11 @@ void RenderingGeometryApp::startup()
 	int nm = 4;
 	int np = 3;
 	double radius = 5;
+	int psize = 3;
 	std::vector<glm::vec4>pts=	genHalfCircle(np, radius);
 	std::vector<glm::vec4>allpts = genSphere(pts, nm);
 	std::vector<unsigned int> ind = genSphereIndices(np, nm);
+	std::vector<Vertex>planeVertex = genPlane(psize);
 	mMesh->initialise();
 	
 }

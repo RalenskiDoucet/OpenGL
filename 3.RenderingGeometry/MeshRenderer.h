@@ -6,13 +6,14 @@ class MeshRenderer
 public:
 	MeshRenderer();
 	virtual ~MeshRenderer();
-	void initialise(std::vector<glm::vec3> positions);
 	struct Vertex
 	{
 		glm::vec4 position;
 		glm::vec4 color;
 	};
-
+	void initialise(std::vector<glm::vec4> positions);
+	
+	void initialise(std::vector < glm::vec4> positions,std::vector<unsigned int>indices);
 	std::vector<Vertex> _vertices;
 	std::vector<unsigned int> _indices;
 

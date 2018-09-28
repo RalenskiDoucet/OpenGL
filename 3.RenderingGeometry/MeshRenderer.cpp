@@ -10,10 +10,19 @@ MeshRenderer::~MeshRenderer()
 	glDeleteBuffers(1, &vbo);
 	glDeleteBuffers(1, &ibo);
 }
-void MeshRenderer::initialise(std::vector<glm::vec3> positions)
+void MeshRenderer::initialise(std::vector<glm::vec4> positions)
 {
 }
-
+void MeshRenderer::initialise(std::vector<glm::vec4> positions, std::vector<unsigned int> indices)
+{
+	std::vector<glm::vec4> points =
+	{
+		{glm::vec4(1,0,0,1)},
+		{glm::vec4(0,1,0,0)},
+		{glm::vec4(0,0,1,1)},
+		{glm::vec4(-1,0,1,0)},
+	};
+}
 
 void MeshRenderer::initialise()
 {
