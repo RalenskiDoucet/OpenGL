@@ -12,6 +12,10 @@ public:
 		VERTEX = 0,
 		FRAGMENT = 1
 	};
+	enum Light_Type {
+		phong = 0,
+	};
+	void chooseLighting(Shader::Light_Type);
 	std::string fsSourceString;
 	std::string vsSourceString;
 	std::string data;
@@ -27,7 +31,7 @@ public:
 
 	const char* vsSource;
 	const char* fsSource;
-
+	const char* phongL;
 	unsigned int m_program;
 };
 

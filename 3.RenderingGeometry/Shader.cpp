@@ -12,9 +12,17 @@ Shader::~Shader()
 {
 }
 
+void Shader::chooseLighting(Shader::Light_Type)
+{
+	phongL = "#version 410\n \
+			layout(location = 0) in vec4 Position;\n \
+			layout(location = 1) in vec4 Normal;\n\			out vec3 vNormal;\n\			uniform mat4 ProjectionViewWorld;\n\			uniform mat3 NormalMatrix;\n\			in vec3 vNormal;\n\			uniform vec3 LightDirection;\n\			out vec4 FragColour;";
+}
+
 void Shader::bind()
 {
 	glUseProgram(m_program);
+
 }
 
 void Shader::unbind()

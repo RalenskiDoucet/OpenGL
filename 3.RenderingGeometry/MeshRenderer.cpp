@@ -22,6 +22,7 @@ void MeshRenderer::initialise(std::vector<glm::vec4> positions, std::vector<unsi
 		{glm::vec4(0,0,1,1)},
 		{glm::vec4(-1,0,1,0)},
 	};
+	
 }
 
 void MeshRenderer::initialise()
@@ -34,7 +35,15 @@ void MeshRenderer::initialise()
 		{ glm::vec4(10, -10, 0, 1), glm::vec4(0, 0, 1, 1) },
 		{ glm::vec4(-10, -10, 0, 1), glm::vec4(1, 1, 1, 1) },
 	};
-
+	_vertices[0].normal = { 0,1,0,0 };
+	_vertices[1].normal = { 0,1,0,0 };
+	_vertices[2].normal = { 0,1,0,0 };
+	_vertices[3].normal = { 0,1,0,0 };
+	_vertices[4].normal = { 0,1,0,0 };
+	_vertices[5].normal = { 0,1,0,0 };
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_TRUE, sizeof(Vertex), (void*)16);
+	
 	_indices = std::vector<unsigned int>{ 0,1,2,2,3,0 };
 
 	glGenVertexArrays(1, &vao);
