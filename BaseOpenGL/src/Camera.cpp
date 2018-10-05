@@ -3,7 +3,7 @@
 #include <GLM\fwd.hpp>
 #include <GLM\ext.hpp>
 #include <iostream>
-Camera::Camera()
+Camera::Camera() : projectionTransform(glm::mat4(1))
 {
 	worldTransform = glm::mat4(1);	
 }
@@ -14,10 +14,14 @@ Camera::~Camera()
 void Camera::update(float Deltatime)
 {
 }
-void Camera::setPerspective(float feildofveiw, float aspectRatio, float near, float far)
+glm::mat4 Camera::setPerspective(float fieldofview, float aspectRatio, float near, float far)
 {
-	
-	projectionTransform = glm::perspective(feildofveiw, aspectRatio, near, far);
+	projectionTransform[0].x = 1 / aspectRatio * tan(fieldofview / 2);
+	projectionTransform[1].y = 1 / tan(fieldofview / 2);
+	projectionTransform[2].z = 1 / -((far + near) / (far - near));
+	projectionTransform[2].w = -1;
+	projectionTransform[3].z = ((2 * far *near)/(far - near));
+	return projectionTransform;
 }
 void Camera::setLookAt(glm::vec3 from, glm::vec3 to, glm::vec3 up)
 {

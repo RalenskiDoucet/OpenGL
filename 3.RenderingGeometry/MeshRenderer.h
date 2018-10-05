@@ -14,15 +14,15 @@ public:
 		glm::vec2 textCoord;
 	};
 	
-	void initialise(std::vector<glm::vec4> positions);
-	
-	void initialise(std::vector < glm::vec4> positions,std::vector<unsigned int>indices);
-	std::vector<Vertex> _vertices;
-	std::vector<unsigned int> _indices;
-	
-	//load vertex shader from file.
-	void initialise();
-	virtual void draw();
-protected:	
-	unsigned int vao, vbo, ibo;
+	void initialize(std::vector<unsigned int>& m_indices, std::vector<Vertex>& m_vertices);
+	void render();
+
+	std::vector<unsigned int> m_indices;
+	std::vector<Vertex> m_vertices;
+
+	unsigned int vao;
+	unsigned int vbo;
+	unsigned int ibo;
+
+	void create_Buffers();
 };

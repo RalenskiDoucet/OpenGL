@@ -4,25 +4,31 @@
 
 void RenderingGeometryApp::startup()
 {
-	model = glm::mat4(1);
-	view = glm::lookAt(glm::vec3(0, -10, 10), glm::vec3(0), glm::vec3(0, 1, 0));
-	projection = glm::perspective(glm::quarter_pi<float>(), 16 / (float)9, 0.1f, 1000.0f);
-	mShader = new Shader();
-	mShader->load("vertex.vert", Shader::SHADER_TYPE::VERTEX);
-	mShader->load("fragment.frag", Shader::SHADER_TYPE::FRAGMENT);
-
-	mShader->attach();
-	mMesh = new MeshRenderer();
 	int nm = 4;
 	int np = 3;
-	double radius = 5;
-	int psize = 3;
-	std::vector<glm::vec4>pts=	genHalfCircle(np, radius);
-	std::vector<glm::vec4>allpts = genSphere(pts, nm);
-	std::vector<unsigned int> ind = genSphereIndices(np, nm);
-	std::vector<Vertex>planeVertex = genPlane(psize);
-	mMesh->initialise();
+
+	mMesh = new MeshRenderer();
+
+	std::vector<glm::vec4>pts=	genHalfCircle(np, 5);
 	
+	pts = genSphere(pts, nm);
+
+	std::vector<unsigned int> indices = genSphereIndices(np, nm);
+
+	std::vector<MeshRenderer::Vertex> vertexs;
+	for (glm::vec4 point : points)
+	{
+		MeshRenderer::Vertex vertex = { point, glm::vec4(0, 1, 1, 1) };
+		vertexs.push_back(vertex);
+	}
+	mMesh->initialize(indices, vertexs);
+
+	mShader = new Shader();
+
+	mShader->load("vertex.vert", Shader::SHADER_TYPE::VERTEX);
+	mShader->load("fragment.frag", Shader::SHADER_TYPE::FRAGMENT);
+	
+	mShader->attach();
 }
 
 void RenderingGeometryApp::shutdown()
@@ -31,18 +37,20 @@ void RenderingGeometryApp::shutdown()
 
 void RenderingGeometryApp::update(float dt)
 {
-	
-	
+	model = glm::mat4(1);
+	glm::vec3 eye = glm::vec3(0, -20, 100);
+	view = glm::lookAt(eye, glm::vec3(0, 1, 10), glm::vec3(0, 1, 0));
 }
 
 void RenderingGeometryApp::draw()
 {
+	glUseProgram(mShader->m_program);
 	mShader->bind();
 	glm::mat4 mvp = projection * view * model;
 	glUniformMatrix4fv(mShader->getUniform("ProjectionViewWorld"), 1, GL_FALSE, &mvp[0][0]);
-	
-	mMesh->draw();
 	mShader->unbind();
+	glUseProgram(0);
+	mMesh->render();
 }
 
 std::vector<glm::vec4> RenderingGeometryApp::genHalfCircle(int np, double radius)
@@ -89,7 +97,7 @@ std::vector<glm::vec4> RenderingGeometryApp::genSphere(std::vector<glm::vec4>poi
 
 }
 
-std::vector<unsigned int> RenderingGeometryApp::genSphereIndices(unsigned int np, unsigned int numofM)
+std::vector<unsigned int> RenderingGeometryApp::genSphereIndices(int np, int numofM)
 {
 	std::vector<unsigned int> Sphereindices;  
 	unsigned int start;   
@@ -140,5 +148,37 @@ std::vector<Vertex> RenderingGeometryApp::genCube(std::vector<Vertex> vertices)
 	CubePoints.push_back(Vertex(glm::vec4(0, 1, 0, 1), glm::vec4(1)));
 	CubePoints.push_back(Vertex(glm::vec4(0, 0, 0, 1), glm::vec4(1)));
 	return CubePoints;
+}
+
+std::vector<glm::vec4> RenderingGeometryApp::rotateHalfCircle(std::vector<glm::vec4> points, unsigned int nm)
+{
+	std::vector<glm::vec4> allPoints;
+	for (int i = 0; i <= nm; i++)
+	{
+		float slice = 2.0f * glm::pi<float>() / (float)nm;
+		float theta = i * slice;
+		for (int j = 0; j < points.size(); j++)
+		{
+			float newX = points[j].x;
+			float newY = points[j].y * cos(theta) + points[j].z * -sin(theta);
+			float newZ = points[j].z * cos(theta) + points[j].y * sin(theta);
+			allPoints.push_back(glm::vec4(newX, newY, newZ, 1));
+			//allPoints[i] = glm::round(allPoints[i]);
+		}
+	}
+	return allPoints;
+}
+
+std::vector<unsigned int> RenderingGeometryApp::getCubeIndices()
+{
+	std::vector<unsigned int> indices =
+	{ 0, 1, 2, 2, 3, 0,//front
+		3, 2, 4, 4, 5, 2,//Bot
+		4, 5, 6, 6, 7, 4,//Back
+		6, 7, 8, 8, 9, 6,//Top
+		2, 1, 10, 10, 11, 2,//Right
+		0, 3, 12, 12, 13, 0//Left
+	};
+	return indices;
 }
 

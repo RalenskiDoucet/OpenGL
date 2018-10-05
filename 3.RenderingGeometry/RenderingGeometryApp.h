@@ -21,12 +21,14 @@ public:
 	std::vector<glm::vec4>points;
 	std::vector <glm::vec4> genHalfCircle(int np, double radius);
 	std::vector<glm::vec4> genSphere(std::vector<glm::vec4>points, unsigned int numofM);
-	std::vector<unsigned int>genSphereIndices(unsigned int np, unsigned int numofM);
+	std::vector<unsigned int>genSphereIndices(int np, int numofM);
 	std::vector<Vertex> genPlane(int size);
 	std::vector<Vertex>genCube(std::vector<Vertex> vertices);
-private:
+	std::vector<glm::vec4> rotateHalfCircle(std::vector<glm::vec4>points, unsigned int nm);
+	std::vector<unsigned int> getCubeIndices();
 	Shader *mShader;
 	MeshRenderer* mMesh;
-	Transform *mTransform;
+	
+	Transform *mTransform= new Transform();
 	glm::mat4 model, view, projection;
 };
