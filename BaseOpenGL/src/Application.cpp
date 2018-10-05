@@ -15,8 +15,9 @@ Application::~Application()
 
 void Application::run(const char * title, unsigned int width, unsigned int height, bool fullscreen)
 {
-	float prevTime = glfwGetTime();
 	glfwInit();
+	float prevTime = glfwGetTime();
+	
 	m_window = glfwCreateWindow(720, 720, "ChalkZone", NULL, NULL);
 	glfwMakeContextCurrent(m_window);
 	ogl_LoadFunctions();
@@ -29,22 +30,17 @@ void Application::run(const char * title, unsigned int width, unsigned int heigh
 	glClearColor(0.15f, 0.15f, 0.15f, 1);
 	glEnable(GL_DEPTH_TEST);
 	ImGui_ImplGlfwGL3_Init(m_window,true);
-	
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	startup();
 	while (glfwWindowShouldClose(m_window) == false && glfwGetKey(m_window, GLFW_KEY_ESCAPE) != GLFW_PRESS)
 	{
 		float currentTime = glfwGetTime();
 		float deltaTime = currentTime - prevTime;
 		prevTime = currentTime;
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		ImGui_ImplGlfwGL3_NewFrame();
 		update(deltaTime);
 		double CurrentTime = glfwGetTime();
-		double FrameDistance = PreviousTime - CurrentTime;
 		draw();
-		ImGui::Render();
 		glfwSwapBuffers(m_window);
-		glfwPollEvents();
 	
 	}
 

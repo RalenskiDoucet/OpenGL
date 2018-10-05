@@ -9,9 +9,9 @@ void RenderingGeometryApp::startup()
 
 	mMesh = new MeshRenderer();
 
-	std::vector<glm::vec4>pts=	genHalfCircle(np, 5);
+	points=	genHalfCircle(np, 5);
 	
-	pts = genSphere(pts, nm);
+	points = genSphere(points, nm);
 
 	std::vector<unsigned int> indices = genSphereIndices(np, nm);
 
