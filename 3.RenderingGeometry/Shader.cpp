@@ -71,6 +71,7 @@ bool Shader::attach()
 	}
 
 	return true;
+
 }
 
 void Shader::Load()

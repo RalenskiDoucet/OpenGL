@@ -4,6 +4,7 @@
 #include "MeshRenderer.h"
 #include <Transform.h>
 #include <Vertex.h>
+#include <Camera.h>
 #include "GLM/ext.hpp"
 #include "gl_core_4_4.h"
 #include <Application.h>
@@ -28,6 +29,7 @@ public:
 	std::vector<unsigned int> getCubeIndices();
 	Shader *mShader;
 	MeshRenderer* mMesh;
+	Camera *camera;
 	
 	Transform *mTransform= new Transform();
 	glm::mat4 model, view, projection;
