@@ -35,10 +35,4 @@ public:
 	unsigned int m_program;
 };
 
-struct ShaderData
-{
-	Shader* shader;
-	char* source;
-	unsigned type;
-	bool CorrectFile;
-};
+

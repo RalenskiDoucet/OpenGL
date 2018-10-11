@@ -4,17 +4,18 @@
 
 void RenderingGeometryApp::startup()
 {
-	int nm = 50;
-	int np = 40;
+	int nm = 30;
+	int np = 30;
 
 	mMesh = new MeshRenderer();
 
-	points=	genHalfCircle(np, 10);
+	points=	genHalfCircle(np, nm);
 	
 	points = genSphere(points, nm);
 	camera = new Camera();
+	rotateHalfCircle(points, nm);
 
-	std::vector<unsigned int> indices = genSphereIndices(np, nm);
+	std::vector<unsigned int> indices = genSphereIndices(np, 5);
 
 	std::vector<MeshRenderer::Vertex> vertexs;
 	for (glm::vec4 point : points)
@@ -31,7 +32,6 @@ void RenderingGeometryApp::startup()
 
 	mShader->attach();
 
-	
 }
 
 //it happens inside of the rendering geometryapp  startup function every time after attach is Hit
@@ -42,12 +42,12 @@ void RenderingGeometryApp::shutdown()
 void RenderingGeometryApp::update(float dt)
 {
 	model = glm::mat4(1);
-	glm::vec3 eye = glm::vec3(100, 200, 300);
-	view = glm::lookAt(eye, glm::vec3(0, 1, 10), glm::vec3(0, 1, 0));
+	glm::vec3 eye = glm::vec3(10, -10, -10);
+	view = glm::lookAt(eye, glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 
-	projection=camera->setPerspective(90, 800 / (float)600, .1f, 1000.f);
+	projection=camera->setPerspective(glm::pi<float>(), 800 / (float)600, .1f, 1000.f);
 	view = camera->getView();
-	model = camera->getProjection();
+
 
 }
 
