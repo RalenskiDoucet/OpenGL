@@ -1,18 +1,23 @@
 #include "GUIApplication.h"
-
+#include <GLM/glm.hpp>
+#include <GLM/fwd.hpp>
+#include <GLM/ext.hpp>
 #include "imgui.h"
+#include "gl_core_4_4.h"
 
-GUIApplication::GUIApplication()
-{
-}
-
-GUIApplication::~GUIApplication()
-{
-}
-
+int position[3] = { 0,0,0 };
 void GUIApplication::startup()
 {
-	 
+	m_mesh = new MeshRenderer();
+	m_defaultShader = new Shader();
+	m_transform = new Transform();
+	std::vector<unsigned int> indices = { 0 ,1,2,2,3,0 };
+	std::vector<MeshRenderer::Vertex> vertexs;
+	m_transform->SetModel(glm::mat4(1));
+	m_mesh->initialize(indices, vertexs);
+	m_defaultShader->load("vertex.vert", Shader::SHADER_TYPE::VERTEX);
+	m_defaultShader->load("fragment.frag", Shader::SHADER_TYPE::FRAGMENT);
+	m_defaultShader->attach();
 }
 
 void GUIApplication::shutdown()
@@ -20,17 +25,35 @@ void GUIApplication::shutdown()
 }
 
 void GUIApplication::update(float dt)
-{//use the model matrix to  move the square around
-	
+{
+	m_transform->SetModel(glm::mat4(1));
+	glm::vec3 eye = glm::vec3(0, -10, 200);
+	m_view = glm::lookAt(eye, glm::vec3(0), glm::vec3(0, 1, 0));
+	m_projection = glm::perspective(glm::quarter_pi<float>(), 800 / (float)600, 0.1f, 1000.f);
 }
 
 void GUIApplication::draw()
 {
-	if(ImGui::Button("Move Left")){}
-	if (ImGui::Button("Move Right")) {}
-	if (ImGui::Button("Move Up")) {}
-	if (ImGui::Button("Move Down")) {}
-	if (ImGui::Button("Move Left")) {}
-	
-
+	ImGui::SliderInt3("position", position, -100, 100);
+	translation[3].xyz = glm::vec3(position[0], position[1], position[2]);
+	m_defaultShader->bind();
+	int handle = m_defaultShader->getUniform("ProjectionViewWorld");
+	int yPos = 70;
+	int xMultiple = 0;
+	for (int x = 1; x <= 64; x++)
+	{
+		glm::mat4 mat = glm::mat4(1);
+		mat = glm::translate(mat, glm::vec3(-100, 0, 0));
+		mat = glm::translate(mat, glm::vec3(20 * xMultiple, yPos, 0));
+		glm::mat4 mvp = m_projection * m_view * mat * translation;
+		glUniformMatrix4fv(handle, 1, GL_FALSE, &mvp[0][0]);
+		m_mesh->render();
+		xMultiple++;
+		if (x % 8 == 0)
+		{
+			yPos -= 20;
+			xMultiple = 0;
+		}
+	}
+	m_defaultShader->unbind();
 }

@@ -70,7 +70,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)BaseOpenGL\include\;$(IncludePath)$(SolutionDir)dep\include\GUI</IncludePath>
+    <IncludePath>$(SolutionDir)3.RenderingGeometry\include;$(SolutionDir)dep\include;$(SolutionDir)BaseOpenGL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)dep\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDir)dep\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)dep\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -81,7 +85,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>BaseOpenGL.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>RenderingGeometry.lb;BaseOpenGL.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

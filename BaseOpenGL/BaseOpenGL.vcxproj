@@ -9,6 +9,7 @@
   <ItemGroup>
     <ClInclude Include="include\Application.h" />
     <ClInclude Include="include\Camera.h" />
+    <ClInclude Include="include\DirectionalLight.h" />
     <ClInclude Include="include\FlyCamera.h" />
     <ClInclude Include="include\Gizmos.h" />
     <ClInclude Include="include\gl_core_4_4.h" />
@@ -16,6 +17,7 @@
     <ClInclude Include="include\imgui.h" />
     <ClInclude Include="include\imgui_impl_glfw_gl3.h" />
     <ClInclude Include="include\imgui_internal.h" />
+    <ClInclude Include="include\Light.h" />
     <ClInclude Include="include\stb_rect_pack.h" />
     <ClInclude Include="include\stb_textedit.h" />
     <ClInclude Include="include\stb_truetype.h" />
@@ -25,6 +27,7 @@
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Camera.cpp" />
+    <ClCompile Include="src\DirectionalLight.cpp" />
     <ClCompile Include="src\FlyCamera.cpp" />
     <ClCompile Include="src\Gizmos.cpp" />
     <ClCompile Include="src\gl_core_4_4.c" />
@@ -32,6 +35,7 @@
     <ClCompile Include="src\imgui_demo.cpp" />
     <ClCompile Include="src\imgui_draw.cpp" />
     <ClCompile Include="src\imgui_impl_glfw_gl3.cpp" />
+    <ClCompile Include="src\Light.cpp" />
     <ClCompile Include="src\Transform.cpp" />
     <ClCompile Include="src\Vertex.cpp" />
   </ItemGroup>
@@ -46,7 +50,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />

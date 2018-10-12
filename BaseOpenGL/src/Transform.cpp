@@ -97,5 +97,15 @@ glm::mat4 Transform::Translate(glm::mat4 model,glm::vec3 moveAmount)
 	return model;
 	//^
 	//^return model's new values.
+
+}
+void Transform::SetModel(glm::mat4 newModel)
+{
+	m_model = newModel;
+}
+
+glm::mat4 Transform::GetModel()
+{
+	return m_model;
 }
 

@@ -1,12 +1,22 @@
-#pragma once
-#include <Application.h>
-class GUIApplication :public Application
+#include "Application.h"
+#include "Transform.h"
+#include "Shader.h"
+#include "MeshRenderer.h"
+#include <GLM/common.hpp>
+
+
+class GUIApplication : public Application
 {
 public:
-	GUIApplication();
-	~GUIApplication();
-	void startup() override;
-	void shutdown() override;
-	void update(float dt) override;
-	void draw() override;
+	MeshRenderer * m_mesh;
+	Shader* m_defaultShader;
+	Transform* m_transform;
+	glm::mat4 m_view;
+	glm::mat4 m_projection;
+	glm::mat4 translation = glm::mat4(1);
+
+	virtual void startup() override;
+	virtual void shutdown() override;
+	virtual void update(float dt) override;
+	virtual void draw() override;
 };
