@@ -15,6 +15,8 @@ public:
 	glm::mat4 getProjection();
 	glm::mat4 getProjectionView();
 	void ChangeProjection(int isActive);
+	void setOrthographicView(float right, float left, float top, float bottom, float far, float near);
+	void setPerspectiveView(float fov, float aspectRatio, float near, float far);
 private:   
 	
 	glm::mat4 worldTransform;  

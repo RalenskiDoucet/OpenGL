@@ -59,8 +59,28 @@ void Camera::ChangeProjection(int isActive)
 {
 }
 
+void Camera::setOrthographicView(float right, float left, float top, float bottom, float far, float near)
+{
+	projectionTransform[0].x = 2 / (right - left);
+	projectionTransform[1].y = 2 / (top - bottom);
+	projectionTransform[2].z = -2 / (far - near);
+	projectionTransform[3].x = -((right + left) / (right - left));
+	projectionTransform[3].y = -((top + bottom) / (top - bottom));
+	projectionTransform[3].z = -((far + near) / (far - near));
+}
+
+void Camera::setPerspectiveView(float fov, float aspectRatio, float far, float near)
+{
+	projectionTransform[0].x = 1 / (aspectRatio * tan(fov / 2));
+	projectionTransform[1].y = 1 / tan(fov / 2);
+	projectionTransform[2].z = -((far + near) / (far - near));
+	projectionTransform[2].w = -1;
+	projectionTransform[3].z = -((2 * far*near) / (far - near));
+}
+
 
 
 void Camera::updateProjectionViewTransform()
 {
+	projectionViewTransform = projectionTransform * viewTransform;
 }

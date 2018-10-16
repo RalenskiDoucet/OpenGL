@@ -19,6 +19,7 @@ public:
 	void shutdown() override;
 	void update(float dt) override;
 	void draw() override;
+	Vertex *vertices;
 	std::vector<glm::vec4>points;
 	std::vector <glm::vec4> genHalfCircle(int np, double radius);
 	std::vector<glm::vec4> genSphere(std::vector<glm::vec4>points, unsigned int numofM);

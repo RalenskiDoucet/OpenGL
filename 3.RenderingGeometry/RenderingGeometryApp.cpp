@@ -1,6 +1,6 @@
 #define GLM_FORCE_SWIZZLE
 #include "RenderingGeometryApp.h"
-
+#include <Vertex.h>
 
 void RenderingGeometryApp::startup()
 {
@@ -131,33 +131,38 @@ std::vector<unsigned int> RenderingGeometryApp::genSphereIndices(int np, int num
 
 std::vector<Vertex> RenderingGeometryApp::genPlane(int size)
 {
-	Vertex A = Vertex(glm::vec4(-size, size, 0, 1), glm::vec4(1, 0, 0, 1));  
-	Vertex B = Vertex(glm::vec4(size, size, 0, 1), glm::vec4(1, 0, 0, 1));
-	Vertex C = Vertex(glm::vec4(size, -size, 0, 1), glm::vec4(1, 0, 0, 1)); 
-	Vertex D = Vertex(glm::vec4(-size, -size, 0, 1), glm::vec4(1, 0, 0, 1));  
-	std::vector<Vertex> PlaneVertices = { A,B,C,D };   
+	
+	Vertex A = Vertex(glm::vec4(-size, size, 0, 1), glm::vec4(1, 0, 0, 1), glm::vec2(0, 0));
+	Vertex B = Vertex(glm::vec4(size, size, 0, 1), glm::vec4(1, 0, 0, 1), glm::vec2(1, 0));
+	Vertex C = Vertex(glm::vec4(size, -size, 0, 1), glm::vec4(1, 0, 0, 1), glm::vec2(1, 1));
+	Vertex D = Vertex(glm::vec4(-size, -size, 0, 1), glm::vec4(1, 0, 0, 1), glm::vec2(0, 1));
+	std::vector<Vertex> PlaneVertices = { A,B,C,D };
 	return PlaneVertices;
 }
 
 std::vector<Vertex> RenderingGeometryApp::genCube(std::vector<Vertex> vertices)
 {
-	std::vector<Vertex> CubePoints;    
-	 
-	CubePoints.push_back(Vertex(glm::vec4(0, 1, 1, 1),glm::vec4(1)));
-	CubePoints.push_back(Vertex(glm::vec4(1, 1, 1, 1), glm::vec4(1)));
-	CubePoints.push_back(Vertex(glm::vec4(1, 0, 1, 1), glm::vec4(1)));
-	CubePoints.push_back(Vertex(glm::vec4(0, 0, 1, 1), glm::vec4(1)));   
-	CubePoints.push_back(Vertex(glm::vec4(0, 0, 0, 1), glm::vec4(1))); 
-	CubePoints.push_back(Vertex(glm::vec4(1, 0, 0, 1), glm::vec4(1))); 
-	CubePoints.push_back(Vertex(glm::vec4(1, 1, 0, 1), glm::vec4(1)));
-	CubePoints.push_back(Vertex(glm::vec4(0, 1, 0, 1), glm::vec4(1)));   
-	CubePoints.push_back(Vertex(glm::vec4(0, 1, 1, 1), glm::vec4(1)));
-	CubePoints.push_back(Vertex(glm::vec4(1, 1, 1, 1), glm::vec4(1)));  
-	CubePoints.push_back(Vertex(glm::vec4(1, 1, 0, 1), glm::vec4(1)));
-	CubePoints.push_back(Vertex(glm::vec4(1, 0, 0, 1), glm::vec4(1)));
-	CubePoints.push_back(Vertex(glm::vec4(0, 1, 0, 1), glm::vec4(1)));
-	CubePoints.push_back(Vertex(glm::vec4(0, 0, 0, 1), glm::vec4(1)));
-	return CubePoints;
+	//Front
+	vertices.push_back(Vertex(glm::vec4(0, 1, 1, 1), glm::vec4(1), glm::vec2(0)));
+	vertices.push_back(Vertex(glm::vec4(1, 1, 1, 1), glm::vec4(1), glm::vec2(0)));
+	vertices.push_back(Vertex(glm::vec4(1, 0, 1, 1), glm::vec4(1), glm::vec2(0)));
+	vertices.push_back(Vertex(glm::vec4(0, 0, 1, 1), glm::vec4(1), glm::vec2(0)));
+   //Bottom																			  
+	vertices.push_back(Vertex(glm::vec4(0, 0, 0, 1), glm::vec4(1), glm::vec2(0)));
+	vertices.push_back(Vertex(glm::vec4(1, 0, 0, 1), glm::vec4(1), glm::vec2(0)));
+    //Back
+	vertices.push_back(Vertex(glm::vec4(1, 1, 0, 1), glm::vec4(1), glm::vec2(0)));
+	vertices.push_back(Vertex(glm::vec4(0, 1, 0, 1), glm::vec4(1), glm::vec2(0)));
+	//Top
+	vertices.push_back(Vertex(glm::vec4(0, 1, 1, 1), glm::vec4(1), glm::vec2(0)));
+	vertices.push_back(Vertex(glm::vec4(1, 1, 1, 1), glm::vec4(1), glm::vec2(0)));
+	 //Right
+	vertices.push_back(Vertex(glm::vec4(1, 1, 0, 1), glm::vec4(1), glm::vec2(0)));
+	vertices.push_back(Vertex(glm::vec4(1, 0, 0, 1), glm::vec4(1), glm::vec2(0)));
+	 //Left
+	vertices.push_back(Vertex(glm::vec4(0, 1, 0, 1), glm::vec4(1), glm::vec2(0)));
+	vertices.push_back(Vertex(glm::vec4(0, 0, 0, 1), glm::vec4(1), glm::vec2(0)));
+	return vertices;
 }
 
 std::vector<glm::vec4> RenderingGeometryApp::rotateHalfCircle(std::vector<glm::vec4> points, unsigned int nm)
@@ -182,12 +187,12 @@ std::vector<glm::vec4> RenderingGeometryApp::rotateHalfCircle(std::vector<glm::v
 std::vector<unsigned int> RenderingGeometryApp::getCubeIndices()
 {
 	std::vector<unsigned int> indices =
-	{ 0, 1, 2, 2, 3, 0,//front
-		3, 2, 4, 4, 5, 2,//Bot
-		4, 5, 6, 6, 7, 4,//Back
-		6, 7, 8, 8, 9, 6,//Top
-		2, 1, 10, 10, 11, 2,//Right
-		0, 3, 12, 12, 13, 0//Left
+	{ 0, 1, 2, 2, 3, 0,
+		3, 2, 4, 4, 5, 2,
+		4, 5, 6, 6, 7, 4,
+		6, 7, 8, 8, 9, 6,
+		2, 1, 10, 10, 11, 2,
+		0, 3, 12, 12, 13, 0
 	};
 	return indices;
 }
