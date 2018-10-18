@@ -29,14 +29,14 @@ void LightingApplication::startup()
 	mesh1;
 	mesh2;
 	Sphere = new MeshRenderer();
-	defaultShader = new Shader();
+	baseShader = new Shader();
 	directionalLight = new DirectionalLight();
 	directionalLight->color = glm::vec4(0, .5, 0, 1);
 	directionalLight->direction = glm::vec3(0, -1, 0);
 	directionalLight->pos = glm::vec3(0, -1, 0);
-	defaultShader->load("shaders/d.vertex", Shader::SHADER_TYPE::VERTEX);
-	defaultShader->load("shaders/blin.fragment", Shader::SHADER_TYPE::FRAGMENT);
-	defaultShader->attach();
+	baseShader->load("shaders/d.vertex", Shader::SHADER_TYPE::VERTEX);
+	baseShader->load("shaders/blin.fragment", Shader::SHADER_TYPE::FRAGMENT);
+	baseShader->attach();
 
 	int nm = 20;
 	int np = 20;
@@ -108,15 +108,15 @@ void LightingApplication::key_callback(GLFWwindow* window, int key, int scancode
 
 void LightingApplication::draw()
 {
-	defaultShader->bind();
-	int handle = defaultShader->getUniform("ProjectionViewWorld");
-	int lightColorHandle = defaultShader->getUniform("lightColor");
-	int lightPosHandle = defaultShader->getUniform("lightPos");
-	int lightDirHandle = defaultShader->getUniform("lightDir");
-	int CameraPosHandle = defaultShader->getUniform("cameraPos");
-	int ambientCoHandle = defaultShader->getUniform("ambientCo");
-	int diffuseCoHandle = defaultShader->getUniform("diffuseCo");
-	int specularCoHandle = defaultShader->getUniform("specularCo");
+	baseShader->bind();
+	int handle = baseShader->getUniform("ProjectionViewWorld");
+	int lightColorHandle = baseShader->getUniform("lightColor");
+	int lightPosHandle = baseShader->getUniform("lightPos");
+	int lightDirHandle = baseShader->getUniform("lightDir");
+	int CameraPosHandle = baseShader->getUniform("cameraPos");
+	int ambientCoHandle = baseShader->getUniform("ambientCo");
+	int diffuseCoHandle = baseShader->getUniform("diffuseCo");
+	int specularCoHandle = baseShader->getUniform("specularCo");
 	glm::mat4 mvp = projection * view * model;
 
 	glUniformMatrix4fv(handle, 1, GL_FALSE, &mvp[0][0]);
@@ -132,7 +132,7 @@ void LightingApplication::draw()
 	mesh1->render();
 	mesh2->render();
 	Sphere->render();
-	defaultShader->unbind();
+	baseShader->unbind();
 }
 
 void LightingApplication::shutdown()
