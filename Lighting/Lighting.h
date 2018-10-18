@@ -15,12 +15,12 @@ class LightingApplication : public Application
 public:
 	LightingApplication();
 	virtual ~LightingApplication();
-	MeshRenderer* mesh;
+	MeshRenderer* mesh1;
 	MeshRenderer* mesh2;
-	MeshRenderer* lightSphere;
-	Shader* defaultShader;
+	MeshRenderer* Sphere;
+	Shader* baseShader;
 	RenderingGeometryApp* geom;
-	DirectionalLight* DaLight;
+	DirectionalLight* directionalLight;
 	glm::mat4 model;
 	glm::mat4 view;
 	glm::mat4 projection;
