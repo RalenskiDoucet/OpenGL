@@ -94,7 +94,7 @@ void LightingApplication::update(float dt)
 
 void LightingApplication::key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	LightingApplication* instance = (LightingApplication*)glfwGetWindowUserPointer(window);
+	LightingApplication* thisInstance = (LightingApplication*)glfwGetWindowUserPointer(window);
 	if (action == GLFW_PRESS)
 	{
 		if (key == GLFW_KEY_1)

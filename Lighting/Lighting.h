@@ -31,7 +31,7 @@ protected:
 	void update(float dt) override;
 	void draw() override;
 
-private:
+
 
 
 };
